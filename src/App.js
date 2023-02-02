@@ -2,6 +2,8 @@ import Home from './routes/home/home.component';
 import { Routes, Route } from 'react-router-dom';
 import Hats from './routes/hats/hats.component';
 import Navigation from './routes/navigation/navigation.component';
+import Shop from './routes/shop/shop.component';
+import SignIn from './routes/sign-in/sign-in.component';
 
 
 
@@ -14,6 +16,8 @@ const App = () => {
         <Route path='/' element={<Navigation />}>
           <Route index element={<Home />} />
           <Route path='hats' element={<Hats />} />
+          <Route path='shop' element={<Shop />} />
+          <Route path='signIn' element={<SignIn />} />
         </Route>
     
     </Routes>
