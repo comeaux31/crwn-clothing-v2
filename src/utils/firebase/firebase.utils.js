@@ -48,7 +48,12 @@ export const signInWithGoogleRedirect = () => signInWithGoogleRedirect(auth, goo
 
 export const db = getFirestore();
 
-export const createUserDocumentFromAuth = async (userAuth) => {
+export const createUserDocumentFromAuth = async (userAuth, additionalInfo = {}) => {
+  if(!userAuth) {
+    alert("User Auth Failed")
+    return;
+  }
+
   const userDocRef = doc(db, 'users', userAuth.uid);
 
   console.log(userDocRef);
@@ -64,7 +69,8 @@ export const createUserDocumentFromAuth = async (userAuth) => {
       await setDoc(userDocRef, {
         displayName, 
         email, 
-        createdAt
+        createdAt,
+        ...additionalInfo
       });
     } catch (error) {
       console.log('error creating user', error.message);
@@ -74,6 +80,40 @@ export const createUserDocumentFromAuth = async (userAuth) => {
   return userDocRef
 };
 
-export const createAuthUserWithEmailAndPassword = async () => {
+export const createAuthUserWithEmailAndPassword = async (email, password) => {
+  if(!email || !password) return;
 
+  return await createUserWithEmailAndPassword(auth, email, password)
 }
+export const createUserDocumentFromSignUpForm = async (userAuth, additionalInfo = {}) => {
+  if(!userAuth) {
+    alert("User Auth Failed")
+    return;
+  }
+
+  const userDocRef = doc(db, 'users', userAuth.uid);
+
+  console.log(userDocRef);
+  
+  const userSnapshot = await getDoc(userDocRef);
+  console.log(userSnapshot);
+  console.log(userSnapshot.exists())
+  if(!userSnapshot.exists()) {
+    const { email } = userAuth;
+    const createdAt = new Date();
+    const { displayName } = additionalInfo
+
+    try {
+      await setDoc(userDocRef, {
+        displayName, 
+        email, 
+        createdAt,
+        ...additionalInfo
+      });
+    } catch (error) {
+      console.log('error creating user', error.message);
+    }
+
+  }
+  return userDocRef
+};
