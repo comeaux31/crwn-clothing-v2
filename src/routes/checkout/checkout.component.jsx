@@ -8,7 +8,7 @@ import './checkout.styles.scss';
 
 const Checkout = () => {
 
-    const {cartItems} = useContext(CartContext)
+    const {cartItems, totalPrice} = useContext(CartContext)
 
     return (
     <div className='checkout-items'> 
@@ -23,6 +23,7 @@ const Checkout = () => {
             (cartItems.map(item => <CheckoutItem key = {item.id} checkoutItem={item}/>)) : (
                 <span className='empty-message'>Your cart is empty</span>
               )}
+            <span>TOTAL: ${totalPrice}</span>  
     </div>
 
     );
