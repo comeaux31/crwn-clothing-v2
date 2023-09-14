@@ -9,12 +9,28 @@ const addCartItem = (cartItems, productToAdd) => {
     return [...cartItems, {...productToAdd, quantity: 1}];
 }
 
+const removeCartItem = (cartItems, productToRemove) => {
+    const existingItem = cartItems.find((cartItem) => cartItem.id === productToRemove.id);
+    if(existingItem && existingItem.quantity - 1 > 0) {
+        return cartItems.map((cartItem) => cartItem.id === existingItem.id ? 
+        {...cartItem, quantity: cartItem.quantity - 1} : cartItem);
+    } else if(existingItem.quantity - 1 === 0) {
+        return deleteCartItem(cartItems, existingItem)
+    }
+    return cartItems;
+}
+
+const deleteCartItem = (cartItems, productToDelete) => cartItems.filter((item) => item.id !== productToDelete.id);
+
+
 export const CartContext = createContext({
     isCartOpen: false,
     setIsCartOpen: () => {},
     cartItems: [],
     addItemToCart: () => {},
-    cartCount: 0
+    cartCount: 0,
+    removeItemFromCart: () => {},
+    deleteItemFromCart: () => {}
 });
 
 export const CartProvider = ({ children }) => {
@@ -26,12 +42,24 @@ export const CartProvider = ({ children }) => {
             setCartItems(addCartItem(cartItems, productToAdd))
         }
     }
+    const removeItemFromCart = (productToRemove) => {
+        if(Array.isArray(cartItems)) {
+            setCartItems(removeCartItem(cartItems, productToRemove))
+        }
+    }
+    const deleteItemFromCart = (productToDelete) => {
+        if(Array.isArray(cartItems)) {
+            setCartItems(deleteCartItem(cartItems, productToDelete))
+        }
+    }
+
+
 useEffect(() => {
     const newCartCount = cartItems.reduce((total, cartItem) => total + cartItem.quantity, 0);
     setCartCount(newCartCount);
 }, [cartItems])
 
-    const value = { isCartOpen, setIsCartOpen, cartItems, addItemToCart, cartCount };
+    const value = { isCartOpen, setIsCartOpen, cartItems, addItemToCart, cartCount, removeItemFromCart, deleteItemFromCart };
 
     return <CartContext.Provider value={ value }>{children}</CartContext.Provider>;
 }
