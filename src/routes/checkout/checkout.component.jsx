@@ -9,21 +9,20 @@ import './checkout.styles.scss';
 const Checkout = () => {
 
     const {cartItems, totalPrice} = useContext(CartContext)
-
+    const headers = ['Product', 'Description', 'Quantity', 'Price', 'Remove']
     return (
-    <div className='checkout-items'> 
-            <div className="checkout-label-container">
-                <span>Product</span>
-                <span>Description</span>
-                <span>Quantity</span>
-                <span>Price</span>
-                <span>Remove</span>
+    <div className='checkout-container'> 
+            <div className="checkout-header">
+                {(
+                    headers.map(element => 
+                        <div key={element} className="header-block">
+                            <span>{element}</span>
+                        </div>
+                    )
+                )}
             </div>
-            {cartItems.length ? 
-            (cartItems.map(item => <CheckoutItem key = {item.id} checkoutItem={item}/>)) : (
-                <span className='empty-message'>Your cart is empty</span>
-              )}
-            <span className="total-price"> TOTAL: ${totalPrice}</span>  
+            {(cartItems.map(item => <CheckoutItem key = {item.id} checkoutItem={item}/>))}
+            <span className="total"> TOTAL: ${totalPrice}</span>  
     </div>
 
     );

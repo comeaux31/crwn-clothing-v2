@@ -11,10 +11,10 @@ const addCartItem = (cartItems, productToAdd) => {
 
 const removeCartItem = (cartItems, productToRemove) => {
     const existingItem = cartItems.find((cartItem) => cartItem.id === productToRemove.id);
-    if(existingItem && existingItem.quantity - 1 > 0) {
+    if(existingItem && existingItem.quantity > 1) {
         return cartItems.map((cartItem) => cartItem.id === existingItem.id ? 
         {...cartItem, quantity: cartItem.quantity - 1} : cartItem);
-    } else if(existingItem.quantity - 1 === 0) {
+    } else if(existingItem.quantity === 1) {
         return deleteCartItem(cartItems, existingItem)
     }
     return cartItems;
