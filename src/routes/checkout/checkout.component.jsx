@@ -15,7 +15,7 @@ const Checkout = () => {
             <div className="checkout-header">
                 {(
                     headers.map(element => 
-                        <div key={element} className="header-block">
+                        <div key={headers.indexOf(element)} className="header-block">
                             <span>{element}</span>
                         </div>
                     )

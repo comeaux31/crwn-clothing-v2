@@ -18,7 +18,12 @@ import {
   getFirestore,
   doc,
   getDoc,
-  setDoc
+  setDoc,
+  collection,
+  writeBatch,
+  query,
+  getDocs,
+  where
 } from 'firebase/firestore'
 
 
@@ -132,3 +137,29 @@ export const signOutUser = () => {
 }
 
 export const onAuthStateChangedListener = (callback) => onAuthStateChanged(auth, callback);
+
+export const addCollectionAndDocuments = async (collectionKey, objects) => {
+  const collectionRef = collection(db, collectionKey);
+  const batch = writeBatch(db);
+  for (const key in objects) {
+    console.log(key);
+    const docRef = doc(collectionRef, objects[key].title.toLowerCase());
+    batch.set(docRef, objects[key]);
+  }
+  await batch.commit();
+  console.log("Done");
+
+}
+
+export const getCollectionAndDocuments = async () => {
+const collectionRef = collection(db, 'categories');
+const categoryQuery = query(collectionRef);
+const querySnapshot = await getDocs(categoryQuery);
+const categoryMap = querySnapshot.docs.reduce((acc, documentSnapshot) => {
+  const {title, items} = documentSnapshot.data();
+  acc[title.toLowerCase()] = items;
+  return acc;
+}, {});
+return categoryMap;
+
+}
