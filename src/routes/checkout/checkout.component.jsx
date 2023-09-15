@@ -12,7 +12,7 @@ const Checkout = () => {
 
     return (
     <div className='checkout-items'> 
-            <div style={{display: 'inline-block'}}>
+            <div className="checkout-label-container">
                 <span>Product</span>
                 <span>Description</span>
                 <span>Quantity</span>
@@ -23,7 +23,7 @@ const Checkout = () => {
             (cartItems.map(item => <CheckoutItem key = {item.id} checkoutItem={item}/>)) : (
                 <span className='empty-message'>Your cart is empty</span>
               )}
-            <span>TOTAL: ${totalPrice}</span>  
+            <span className="total-price"> TOTAL: ${totalPrice}</span>  
     </div>
 
     );

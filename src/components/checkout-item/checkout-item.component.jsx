@@ -13,12 +13,12 @@ const CheckoutItem = ({checkoutItem}) => {
     <div className='checkout-item-container'>
         <img src={imageUrl} alt={name}/>
         <span className='name'> {name} </span>
-        <span className='price'>{quantity * price}</span>
         <div className='checkout-item-quantity'>
             <DecreaseIcon onClick={() => removeItemFromCart(checkoutItem)}/>
             <span>{quantity}</span>
             <IncreaseIcon onClick={() => addItemToCart(checkoutItem)}/>
         </div>
+        <span className='price'>{quantity * price}</span>
         <RemoveIcon onClick={() => deleteItemFromCart(checkoutItem)}/>
     </div>)
 }

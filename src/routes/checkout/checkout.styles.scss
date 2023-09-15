@@ -1,4 +1,20 @@
 .checkout-items {
     display:flex;
     flex-direction:row;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.checkout-label-container{
+    display:flex;
+    flex-direction:row;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.total-price {
+    text-align: end;
+    justify-self: end;
 }
