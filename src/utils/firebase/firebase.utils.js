@@ -22,8 +22,7 @@ import {
   collection,
   writeBatch,
   query,
-  getDocs,
-  where
+  getDocs
 } from 'firebase/firestore'
 
 

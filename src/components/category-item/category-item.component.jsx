@@ -7,7 +7,7 @@ const CategoryItem = ({category}) => {
     const {imageUrl, title} = category
     const navigate = useNavigate();
     const navigateToSection = () => {
-        navigate(`/${title}`);
+        navigate(`shop/${title}`);
     }
     
 return (
