@@ -13,10 +13,10 @@ const Category = () => {
     }, [category, categoriesMap])
 
     return (
-        <div className='category-container'>
+        <div className='category-section-container'>
             {products && 
                 products.map((product) => (
-                    <ProductCard key={product.id} product={product} className="product"/>
+                    <ProductCard key={product.id} product={product} />
                 ))    
             }
         </div>
