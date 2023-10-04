@@ -1,51 +1,48 @@
-.product-card-container {
+import styled from "styled-components";
+
+export const ProductCardContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
   height: 350px;
   align-items: center;
-  position: relative;
+  position: relative; `
 
-  img {
+export const Image = styled.img `
     width: 100%;
     height: 95%;
     object-fit: cover;
     margin-bottom: 5px;
-  }
+    &:hover {
+      opacity: 0.8;
+    }
+  `
 
-  button {
+export const ButtonItem = styled.button `
     width: 80%;
     opacity: 0.7;
     position: absolute;
     top: 255px;
     display: none;
-  }
-
-  &:hover {
-    img {
-      opacity: 0.8;
-    }
-
-    button {
+    &:hover  {
       opacity: 0.85;
       display: flex;
     }
-  }
+  `
 
-  .footer {
+export const Footer = styled.div `
     width: 100%;
     height: 5%;
     display: flex;
     justify-content: space-between;
     font-size: 18px;
+`
 
-    .name {
+export const Name = styled.span `
       width: 90%;
       margin-bottom: 15px;
-    }
+    `
 
-    .price {
+export const Price = styled.span `
       width: 10%;
-    }
-  }
-}
+      `
