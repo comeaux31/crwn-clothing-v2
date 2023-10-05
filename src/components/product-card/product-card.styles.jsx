@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { BaseButton } from "../button/button.styles";
 
 export const ProductCardContainer = styled.div`
   width: 100%;
@@ -18,7 +19,7 @@ export const Image = styled.img `
     }
   `
 
-export const ButtonItem = styled.button `
+export const ProductCardButton = styled(BaseButton)`
     width: 80%;
     opacity: 0.7;
     position: absolute;
