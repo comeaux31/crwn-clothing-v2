@@ -20,10 +20,11 @@ export const Image = styled.img `
   `
 
 export const ProductCardButton = styled(Button)`
-    width: 80%;
+    width: 75%;
     opacity: 0.7;
     position: absolute;
     top: 255px;
+    // display: none;
     &:hover {
       opacity: 0.85;
       display: flex;
