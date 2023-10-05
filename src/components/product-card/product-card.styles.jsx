@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { BaseButton } from "../button/button.styles";
+import Button from "../button/button.component";
 
 export const ProductCardContainer = styled.div`
   width: 100%;
@@ -19,13 +19,12 @@ export const Image = styled.img `
     }
   `
 
-export const ProductCardButton = styled(BaseButton)`
+export const ProductCardButton = styled(Button)`
     width: 80%;
     opacity: 0.7;
     position: absolute;
     top: 255px;
-    display: none;
-    &:hover  {
+    &:hover {
       opacity: 0.85;
       display: flex;
     }

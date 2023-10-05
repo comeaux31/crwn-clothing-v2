@@ -2,7 +2,7 @@ import './product-card.styles.jsx';
 import Button, {buttonTypesClasses} from '../button/button.component';
 import { CartContext } from '../../contexts/cart.context';
 import { useContext } from 'react';
-import { Footer, Name, Price, ProductCardContainer } from './product-card.styles.jsx';
+import { Footer, Name, Price, ProductCardButton, ProductCardContainer } from './product-card.styles.jsx';
 
 
 const ProductCard = ({ product }) => {
@@ -16,7 +16,7 @@ const ProductCard = ({ product }) => {
             <Name>{name}</Name>
             <Price>{price}</Price>
         </Footer>
-        <Button buttonType={buttonTypesClasses.base} onClick={addProductToCart}>Add to Cart</Button>
+        <ProductCardButton onClick={addProductToCart}>Add to Cart</ProductCardButton>
     </ProductCardContainer> )
 
 }
