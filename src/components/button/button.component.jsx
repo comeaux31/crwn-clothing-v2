@@ -6,7 +6,7 @@ export const buttonTypesClasses = {
     inverted: 'inverted'
 }
 
-const getButton = (buttonType = buttonTypesClasses.base) => (
+export const getButton = (buttonType = buttonTypesClasses.base) => (
     {
         [buttonTypesClasses.base]: BaseButton,
         [buttonTypesClasses.google]: GoogleSignInButton,
