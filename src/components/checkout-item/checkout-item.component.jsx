@@ -1,9 +1,7 @@
 import { useContext } from 'react';
-import './checkout-item.styles.scss';
 import { CartContext } from '../../contexts/cart.context';
-import { ReactComponent as IncreaseIcon } from '../../assets/arrow-right-bold.svg';
-import { ReactComponent as DecreaseIcon } from '../../assets/arrow-left-bold.svg';
-import { ReactComponent as RemoveIcon } from '../../assets/x-bold.svg';
+import { QuantityContainer, RemoveIcon, SpannableLabel, IncreaseIcon, DecreaseIcon } from './checkout-item.styles';
+
 
 
 const CheckoutItem = ({checkoutItem}) => {
@@ -20,12 +18,12 @@ const CheckoutItem = ({checkoutItem}) => {
             <img src={imageUrl} alt={`${name}`}/>
         </div>
         
-        <span className='name'> {name} </span>
-        <div className='quantity'>
+        <SpannableLabel> {name} </SpannableLabel>
+        <QuantityContainer>
             <DecreaseIcon className='arrow' onClick={removeItemHandler}/>
             <span className='value'>{quantity}</span>
             <IncreaseIcon className='arrow' onClick={addItemHandler}/>
-        </div>
+        </QuantityContainer>
         <span className='price'>{quantity * price}</span>
         <RemoveIcon onClick={deleteItemHandler} className='remove'/>
     </div>)
