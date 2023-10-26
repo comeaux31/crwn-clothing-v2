@@ -3,10 +3,10 @@ import { BackgroundImage, Body, DirectoryItemContainer } from './directory-item.
 
 const DirectoryItem = ({category}) => {
 
-    const {imageUrl, title} = category
+    const {imageUrl, title, route} = category
     const navigate = useNavigate();
     const navigateToSection = () => {
-        navigate(`shop/${title}`);
+        navigate(route);
     }
     
 return (

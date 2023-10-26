@@ -63,11 +63,9 @@ export const createUserDocumentFromAuth = async (userAuth, additionalInfo = {}) 
 
   const userDocRef = doc(db, 'users', userAuth.uid);
 
-  console.log(userDocRef);
   
   const userSnapshot = await getDoc(userDocRef);
-  console.log(userSnapshot);
-  console.log(userSnapshot.exists())
+
   if(!userSnapshot.exists()) {
     const { displayName, email } = userAuth;
     const createdAt = new Date();
@@ -98,13 +96,9 @@ export const createUserDocumentFromSignUpForm = async (userAuth, additionalInfo 
     return;
   }
 
-  const userDocRef = doc(db, 'users', userAuth.uid);
-
-  console.log(userDocRef);
-  
+  const userDocRef = doc(db, 'users', userAuth.uid);  
   const userSnapshot = await getDoc(userDocRef);
-  console.log(userSnapshot);
-  console.log(userSnapshot.exists())
+
   if(!userSnapshot.exists()) {
     const { email } = userAuth;
     const createdAt = new Date();
@@ -141,13 +135,10 @@ export const addCollectionAndDocuments = async (collectionKey, objects) => {
   const collectionRef = collection(db, collectionKey);
   const batch = writeBatch(db);
   for (const key in objects) {
-    console.log(key);
     const docRef = doc(collectionRef, objects[key].title.toLowerCase());
     batch.set(docRef, objects[key]);
   }
   await batch.commit();
-  console.log("Done");
-
 }
 
 export const getCollectionAndDocuments = async () => {

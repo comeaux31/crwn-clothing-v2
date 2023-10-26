@@ -14,7 +14,6 @@ const SignInForm = () => {
     const [formFields, setFormFields] = useState(defaultFormFields)
     const { email, password } = formFields
 
-    console.log(formFields)
 
     const resetFormFields = () => {
         setFormFields(defaultFormFields)
@@ -29,7 +28,6 @@ const SignInForm = () => {
         
         try {
             const response = await signInAuthUserWithEmailAndPassword(email, password);
-            console.log(response);
             resetFormFields();
         } catch(exception) {
             console.log('User encountered an error',exception);
